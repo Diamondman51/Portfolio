@@ -1,0 +1,58 @@
+#klaviatura {
+color: white;
+border-radius: 10px;
+background-color: #4a4a4a;
+height: 60px;
+width: 60px;
+font-weight: 600;
+font-size: 16px;
+border: 1px solid rgb(106, 60, 198);
+}
+
+#mistake {
+color: red;
+font-weight: 900;
+font-size: 50px;
+background-color: #232323;
+border: cadetblue;
+}
+
+#score {
+color: greenyellow;
+font-size: 50px;
+font-weight: 900;
+font-style: italic;
+background-color: #232323;
+border: turquoise;
+}
+
+#togri {
+background-color: green;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 600;
+color: white;
+}
+
+#notogri {
+background-color: red;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 600;
+color: white;
+}
+
+#window {
+background-color: #232323;
+}
+#yozuv {
+color: white;
+font-size: 50px;
+font-weight: 600;
+}
+
+#savol {
+color: black;
+font-size: 50px;
+weight: 600;
+}
