@@ -1,0 +1,22 @@
+#QPushButton {
+border-radius: 15px;
+font-size: 20px;
+color: black;
+background-color: rgb(229, 223, 157);
+border: 1px solid rgb(188, 83, 170);
+}
+#qlabel {
+border-radius: 15px;
+border: 1px solid rgb(152, 126, 203);
+background-color: rgb(255, 255, 255);
+}
+#widget {
+border-radius: 15;
+/* border: 1px solid rgb(106, 60, 198); */
+background-color: rgb(177, 167, 202);
+}
+#equal {
+border-radius: 15px;
+background-color: rgb(217, 34, 202);
+color: black;
+}
