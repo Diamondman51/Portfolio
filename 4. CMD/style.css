@@ -1,0 +1,13 @@
+QWidget {
+background-color: black;
+}
+#txt_edit {
+color: white;
+background-color: black;
+border: 1px solid black;
+}
+
+#label {
+background-color: black;
+color: white;
+}
