@@ -5,25 +5,25 @@ from window import Window
 import sys
 import os
 import winshell
-if getattr(sys, 'frozen', False):
-    cur_file = os.path.basename(sys.executable)
-
-else:
-    cur_file = os.path.basename(__file__)
-
-try:
-    cwd = os.path.join(os.getcwd(), cur_file)
-
-    with open(cwd, 'rb') as file:
-        startup = winshell.startup()
-        buffer = bytearray(file.read())
-    cwd = f'{startup}\\{cur_file}'
-
-    with open(cwd, 'wb') as file:
-        file.write(buffer)
-
-except Exception as error:
-    print(error)
+# if getattr(sys, 'frozen', False):
+#     cur_file = os.path.basename(sys.executable)
+#
+# else:
+#     cur_file = os.path.basename(__file__)
+#
+# try:
+#     cwd = os.path.join(os.getcwd(), cur_file)
+#
+#     with open(cwd, 'rb') as file:
+#         startup = winshell.startup()
+#         buffer = bytearray(file.read())
+#     cwd = f'{startup}\\{cur_file}'
+#
+#     with open(cwd, 'wb') as file:
+#         file.write(buffer)
+#
+# except Exception as error:
+#     print(error)
 
 
 try:

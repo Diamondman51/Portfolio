@@ -26,7 +26,7 @@ class Klaviatura(QVBoxLayout):
                 self.buttons[letter] = QPushButton(letter)
                 place.addWidget(self.buttons[letter])
                 self.buttons[letter].setFixedSize(50, 50)
-                place.setAlignment(Qt.AlignmentFlag.AlignTop)
+                place.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 # self.buttons[letter].setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
                 self.buttons[letter].clicked.connect(self.bosilganda(self.buttons[letter]))
