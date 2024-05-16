@@ -1,0 +1,8 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="images">
+        <file>search.png</file>
+        <file>loupe.png</file>
+        <!-- Add more <file> elements for additional icons -->
+    </qresource>
+</RCC>
