@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'cartMEOXIi.ui'
+## Form generated from reading UI file 'cartbSZtep.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -42,7 +42,7 @@ class Ui_Form(object):
         self.frame.setFrameShape(QFrame.NoFrame)
         self.title_lbl = QLabel(self.frame)
         self.title_lbl.setObjectName(u"title_lbl")
-        self.title_lbl.setGeometry(QRect(10, -1, 381, 51))
+        self.title_lbl.setGeometry(QRect(10, 0, 381, 41))
         font = QFont()
         font.setPointSize(20)
         self.title_lbl.setFont(font)
