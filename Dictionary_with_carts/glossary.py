@@ -1,7 +1,5 @@
 import json
 
-import keyboard
-
 from difflib import get_close_matches
 
 from PySide6.QtWidgets import QMainWindow, QListWidgetItem, QMessageBox
@@ -15,13 +13,12 @@ class Glossary(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.load_file()
+        self.num = 100
         self.add_first_items()
         self.list_widget_for_cart.itemSelectionChanged.connect(self.put_title_definition)
         self.edit_btn.clicked.connect(self.edit_btn_clicked)
         self.add_btn.clicked.connect(self.add_btn_clicked)
         self.delete_btn.clicked.connect(self.detele_choosen_word)
-        if keyboard.is_pressed('Enter'):
-            self.search_btn_clicked()
         self.search_btn.clicked.connect(self.search_btn_clicked)
 
     def upload_json(self):
@@ -38,7 +35,7 @@ class Glossary(QMainWindow, Ui_MainWindow):
     def create_cart(self, word):
         cart = Cart()
         cart.title_lbl.setText(word)
-        cart.define_lbl.setText(self.data[word][:100] if len(self.data[word]) < 100 else self.data[word][:100] + '...')
+        cart.define_lbl.setText(self.data[word][:self.num] if len(self.data[word]) < self.num else self.data[word][:self.num] + '...')
         item = QListWidgetItem()
         item.setSizeHint(cart.size())
         self.list_widget_for_cart.addItem(item)
@@ -83,7 +80,7 @@ class Glossary(QMainWindow, Ui_MainWindow):
                 cart = Cart()
                 cart.title_lbl.setText(self.change_word_structure.text())
                 # print(self.data)
-                cart.define_lbl.setText(text[:100] if len(text) < 100 else text[:100] + '...')
+                cart.define_lbl.setText(text[:self.num] if len(text) < self.num else text[:self.num] + '...')
                 item = QListWidgetItem()
                 item.setSizeHint(cart.size())
                 self.list_widget_for_cart.addItem(item)
@@ -109,8 +106,8 @@ class Glossary(QMainWindow, Ui_MainWindow):
         widget = self.list_widget_for_cart.itemWidget(item)
         if self.change_word_structure.text() and self.set_definition.toPlainText():
             widget.title_lbl.setText(self.change_word_structure.text().strip())
-            widget.define_lbl.setText(self.set_definition.toPlainText()[:100].strip() if len(
-                self.set_definition.toPlainText()) < 100 else self.set_definition.toPlainText()[:100] + '...')
+            widget.define_lbl.setText(self.set_definition.toPlainText()[:self.num].strip() if len(
+                self.set_definition.toPlainText()) < self.num else self.set_definition.toPlainText()[:self.num] + '...')
             self.list_widget_for_cart.setItemWidget(item, widget)
             self.upload_json()
 
@@ -142,7 +139,7 @@ class Glossary(QMainWindow, Ui_MainWindow):
         # widgetni yasash
         widget = Cart()
         widget.title_lbl.setText(title.title())
-        widget.define_lbl.setText(define[:100] if len(define) < 100 else define[:100] + '...')
+        widget.define_lbl.setText(define[:self.num] if len(define) < self.num else define[:self.num] + '...')
 
         # item qo'shish
         self.list_widget_for_cart.addItem(item)

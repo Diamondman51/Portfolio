@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'carthUnQzr.ui'
+## Form generated from reading UI file 'cartMEOXIi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -50,7 +50,7 @@ class Ui_Form(object):
         self.title_lbl.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.define_lbl = QLabel(self.frame)
         self.define_lbl.setObjectName(u"define_lbl")
-        self.define_lbl.setGeometry(QRect(10, 50, 381, 61))
+        self.define_lbl.setGeometry(QRect(10, 50, 381, 81))
         font1 = QFont()
         font1.setPointSize(12)
         self.define_lbl.setFont(font1)
