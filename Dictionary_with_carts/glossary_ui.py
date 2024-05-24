@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'glossaryzAxHSB.ui'
+## Form generated from reading UI file 'glossaryciWpup.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -83,20 +83,10 @@ class Ui_MainWindow(object):
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.add_btn = QPushButton(self.gridLayoutWidget)
-        self.add_btn.setObjectName(u"add_btn")
+        self.delete_btn = QPushButton(self.gridLayoutWidget)
+        self.delete_btn.setObjectName(u"delete_btn")
 
-        self.gridLayout.addWidget(self.add_btn, 2, 2, 1, 1)
-
-        self.search_btn = QPushButton(self.gridLayoutWidget)
-        self.search_btn.setObjectName(u"search_btn")
-
-        self.gridLayout.addWidget(self.search_btn, 0, 2, 1, 1)
-
-        self.change_word_structure = QLineEdit(self.gridLayoutWidget)
-        self.change_word_structure.setObjectName(u"change_word_structure")
-
-        self.gridLayout.addWidget(self.change_word_structure, 3, 0, 1, 3)
+        self.gridLayout.addWidget(self.delete_btn, 2, 0, 1, 1)
 
         self.search_paneli = QLineEdit(self.gridLayoutWidget)
         self.search_paneli.setObjectName(u"search_paneli")
@@ -109,36 +99,62 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.search_paneli, 0, 0, 1, 2)
 
-        self.delete_btn = QPushButton(self.gridLayoutWidget)
-        self.delete_btn.setObjectName(u"delete_btn")
+        self.search_btn = QPushButton(self.gridLayoutWidget)
+        self.search_btn.setObjectName(u"search_btn")
 
-        self.gridLayout.addWidget(self.delete_btn, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.search_btn, 0, 2, 1, 1)
 
         self.edit_btn = QPushButton(self.gridLayoutWidget)
         self.edit_btn.setObjectName(u"edit_btn")
 
         self.gridLayout.addWidget(self.edit_btn, 2, 1, 1, 1)
 
-        self.set_definition = QTextEdit(self.gridLayoutWidget)
-        self.set_definition.setObjectName(u"set_definition")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.set_definition.sizePolicy().hasHeightForWidth())
-        self.set_definition.setSizePolicy(sizePolicy2)
-        self.set_definition.setMinimumSize(QSize(0, 0))
-        self.set_definition.setMaximumSize(QSize(16777215, 100))
+        self.btn_voice = QPushButton(self.gridLayoutWidget)
+        self.btn_voice.setObjectName(u"btn_voice")
+        icon = QIcon()
+        icon.addFile(u"record.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_voice.setIcon(icon)
 
-        self.gridLayout.addWidget(self.set_definition, 4, 0, 1, 3)
+        self.gridLayout.addWidget(self.btn_voice, 0, 3, 1, 1)
 
         self.list_widget_for_cart = QListWidget(self.gridLayoutWidget)
         self.list_widget_for_cart.setObjectName(u"list_widget_for_cart")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.list_widget_for_cart.sizePolicy().hasHeightForWidth())
         self.list_widget_for_cart.setSizePolicy(sizePolicy2)
         self.list_widget_for_cart.setMinimumSize(QSize(0, 0))
         self.list_widget_for_cart.setMaximumSize(QSize(16777215, 400))
 
-        self.gridLayout.addWidget(self.list_widget_for_cart, 1, 0, 1, 3)
+        self.gridLayout.addWidget(self.list_widget_for_cart, 1, 0, 1, 4)
+
+        self.change_word_structure = QLineEdit(self.gridLayoutWidget)
+        self.change_word_structure.setObjectName(u"change_word_structure")
+
+        self.gridLayout.addWidget(self.change_word_structure, 3, 0, 1, 4)
+
+        self.set_definition = QTextEdit(self.gridLayoutWidget)
+        self.set_definition.setObjectName(u"set_definition")
+        sizePolicy2.setHeightForWidth(self.set_definition.sizePolicy().hasHeightForWidth())
+        self.set_definition.setSizePolicy(sizePolicy2)
+        self.set_definition.setMinimumSize(QSize(0, 0))
+        self.set_definition.setMaximumSize(QSize(16777215, 100))
+
+        self.gridLayout.addWidget(self.set_definition, 4, 0, 1, 4)
+
+        self.add_btn = QPushButton(self.gridLayoutWidget)
+        self.add_btn.setObjectName(u"add_btn")
+
+        self.gridLayout.addWidget(self.add_btn, 2, 2, 1, 1)
+
+        self.bnt_read = QPushButton(self.gridLayoutWidget)
+        self.bnt_read.setObjectName(u"bnt_read")
+        icon1 = QIcon()
+        icon1.addFile(u"read.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bnt_read.setIcon(icon1)
+
+        self.gridLayout.addWidget(self.bnt_read, 2, 3, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -149,9 +165,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.add_btn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
-        self.search_btn.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.delete_btn.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.search_btn.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.edit_btn.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+        self.btn_voice.setText("")
+        self.add_btn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
+        self.bnt_read.setText("")
     # retranslateUi
 
