@@ -26,6 +26,13 @@ class Window(Ui_MainWindow, QMainWindow):
         cur[currency[i]['Ccy']] = currency[i]['Rate']
     cur['UZS'] = currency[0]['Rate']
 
+    def mousePressEvent(self, event):
+        self.local = event.pos()
+
+    def mouseMoveEvent(self, event):
+        move = event.pos() - self.local + self.pos()
+        self.move(move)
+
     def change(self):
         currency1_text = self.currency1.text()
         # print(currency1_text)
