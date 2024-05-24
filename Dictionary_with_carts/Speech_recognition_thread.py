@@ -20,8 +20,8 @@ class Speech_recognition_thread(QThread):
                 print(text)
                 self.signal.emit(text)
         except sr.UnknownValueError:
-            self.signal.emit('Sphinx could not understand audio')
+            self.signal.emit('Google could not understand audio')
         except sr.RequestError as error:
-            self.signal.emit("Sphinx error: {0}".format(error))
+            self.signal.emit("Google error: {0}".format(error))
         finally:
             self.end.emit()
