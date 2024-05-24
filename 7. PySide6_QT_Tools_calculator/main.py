@@ -7,4 +7,3 @@ app = QApplication()
 window = Widget()
 window.show()
 app.exec()
-

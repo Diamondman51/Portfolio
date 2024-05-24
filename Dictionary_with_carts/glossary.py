@@ -9,8 +9,9 @@ from PySide6.QtGui import QKeyEvent
 from PySide6.QtWidgets import QMainWindow, QListWidgetItem, QMessageBox
 
 import speech_recognition as sr
-import pyaudio
 
+from Read_thread import Read_thread
+from Speech_recognition_thread import Speech_recognition_thread
 from cart import Cart
 from glossary_ui import Ui_MainWindow
 
@@ -35,22 +36,23 @@ class Glossary(QMainWindow, Ui_MainWindow):
         self.delete_btn.clicked.connect(self.detele_choosen_word)
         # self.search_btn.clicked.connect(self.search_btn_clicked)
         self.search_btn.clicked.connect(self.search_btn_clicked)
+        self.speech_recognition_thread = Speech_recognition_thread()
+        self.read_thread = Read_thread(text=None)
 
     def recognize_the_speech_sphinx(self):
-        recognizer = sr.Recognizer()
+        if not self.speech_recognition_thread.isRunning():
+            self.speech_recognition_thread.start()
+        self.speech_recognition_thread.start.connect(lambda: (self.btn_voice.setDisabled(True)))
+        self.search_paneli.clear()
+        self.speech_recognition_thread.start.connect(lambda: self.label.setText('Started'))
+        self.speech_recognition_thread.end.connect(lambda: self.label.setText('Recognized'))
+        self.speech_recognition_thread.signal.connect(lambda text: self.search_paneli.setText(text))
+        self.speech_recognition_thread.end.connect(self.search_btn_clicked)
+        # print(123)
+        self.speech_recognition_thread.end.connect(lambda: (self.btn_voice.setDisabled(False)))
 
-        with sr.Microphone() as source:
-            recognizer.adjust_for_ambient_noise(source)  # Adjust for noise
-            audio = recognizer.listen(source)  # Listen for audio input
+        # print(self.speech_recognition_thread.signal())
 
-        # Recognize speech using Sphinx
-        try:
-            text = recognizer.recognize_sphinx(audio, language='en-US')
-            self.search_paneli.setText(text)
-        except sr.UnknownValueError:
-            self.search_paneli.setText("Sphinx could not understand audio")
-        except sr.RequestError as e:
-            self.search_paneli.setText("Sphinx error: {0}".format(e))
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
         # self.search_clicked()
@@ -69,29 +71,31 @@ class Glossary(QMainWindow, Ui_MainWindow):
 
         item, widget = self.item_to_widget()
 
-        engine = pyttsx3.init()
+        # engine = pyttsx3.init()
+        #
+        # # Text to be spoken
+        # rate = engine.getProperty('rate')  # getting details of current speaking rate
+        # # print(rate)  # printing current voice rate
+        # engine.setProperty('rate', 125)  # setting up new voice rate
+        #
+        # """VOLUME"""
+        # volume = engine.getProperty('volume')  # getting to know current volume level (min=0 and max=1)
+        # # print(volume)  # printing current volume level
+        # engine.setProperty('volume', 1)  # setting up volume level  between 0 and 1
+        #
+        # """VOICE"""
+        # voices = engine.getProperty('voices')  # getting details of current voice
+        # # engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
+        # engine.setProperty('voice', voices[1].id)  # changing index, changes voices. 1 for female
+        #
+        # if self.list_widget_for_cart.currentItem():
+        #     engine.say(widget.title_lbl.text())
+        # # engine.say('My current speaking rate is ' + str(rate))
+        # engine.runAndWait()
 
-        # Text to be spoken
-        rate = engine.getProperty('rate')  # getting details of current speaking rate
-        # print(rate)  # printing current voice rate
-        engine.setProperty('rate', 125)  # setting up new voice rate
-
-        """VOLUME"""
-        volume = engine.getProperty('volume')  # getting to know current volume level (min=0 and max=1)
-        # print(volume)  # printing current volume level
-        engine.setProperty('volume', 1)  # setting up volume level  between 0 and 1
-
-        """VOICE"""
-        voices = engine.getProperty('voices')  # getting details of current voice
-        # engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
-        engine.setProperty('voice', voices[1].id)  # changing index, changes voices. 1 for female
-
-        if self.list_widget_for_cart.currentItem():
-            engine.say(widget.title_lbl.text())
-        # engine.say('My current speaking rate is ' + str(rate))
-        engine.runAndWait()
-
-        # print("Text spoken directly!")
+        if not self.read_thread.isRunning():
+            self.read_thread.text = widget.title_lbl.text()
+            self.read_thread.start()
 
     def recognize_the_speech_google(self):
         recognizer = sr.Recognizer()
@@ -122,11 +126,13 @@ class Glossary(QMainWindow, Ui_MainWindow):
                 # print(self.list_widget_for_cart.count())
                 # self.search_btn.clicked.connect(self.add_first_items)
         # else:
+        if self.search_paneli.text():
             self.list_widget_for_cart.clear()
             close_words = get_close_matches(self.search_paneli.text(), self.data)
             for word in close_words:
                 # print(word)
                 self.create_cart(word)
+
 
     def create_cart(self, word):
         cart = Cart()
@@ -248,7 +254,7 @@ class Glossary(QMainWindow, Ui_MainWindow):
     def add_first_items(self):
         i = 0
         for key, value in self.data.items():
-            if i == 5:
+            if i == 100:
                 break
             else:
                 i += 1
