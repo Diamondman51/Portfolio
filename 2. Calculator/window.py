@@ -2,7 +2,7 @@ import os.path
 import sys
 from PySide6 import QtCore
 from PySide6.QtCore import Qt
-from PySide6.QtGui import Qt, QRegion
+from PySide6.QtGui import Qt, QRegion, QMouseEvent
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit
 
 from keyboard import Keyboard
@@ -31,6 +31,13 @@ class Window(QWidget):
         keys.bosildi.connect(self.format)
 
         self.bosilganlar = ''
+
+    def mousePressEvent(self, event: QMouseEvent):
+        self.local = event.pos()
+
+    def mouseMoveEvent(self, event: QMouseEvent):
+        move = event.pos() - self.local + self.pos()
+        self.move(move)
 
     def format(self, text):
         if text == '=':
@@ -62,3 +69,4 @@ class Window(QWidget):
     def path_file(self, relative_path):
         path = getattr(sys, '_MEIPASS', os.path.dirname(__file__))
         return os.path.join(path, relative_path)
+
